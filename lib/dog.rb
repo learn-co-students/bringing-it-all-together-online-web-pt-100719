@@ -9,7 +9,7 @@ class Dog
   end
   
   def self.create(attributes)
-    new_dog = Dog.new(attributes)
+    new_dog = self.new(attributes)
     new_dog.save
     new_dog
   end
@@ -88,7 +88,6 @@ class Dog
     dog = DB[:conn].execute("SELECT*FROM dogs WHERE name = ? AND breed = ?", name, breed).flatten
     if !dog.empty?
       dog = self.new_from_db(dog)
-      dog
     else
       dog = self.create(name: name, breed: breed)
     end
