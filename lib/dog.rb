@@ -3,6 +3,7 @@ class Dog
     attr_reader :id
 
     def initialize(id:nil, name:, breed:) 
+        @id = id 
         @name = name 
         @breed = breed
     end 
@@ -42,6 +43,18 @@ class Dog
         end 
         self 
     end
+
+    def self.create(name:, breed:)
+        new_dog = Dog.new(name:name, breed:breed)
+        new_dog.save
+        new_dog
+    end 
+
+    def self.new_from_db(row)
+        # binding.pry
+        dog = Dog.new(id: row[0], name: row[1], breed: row[2])
+        dog 
+    end 
 
 
 end 
